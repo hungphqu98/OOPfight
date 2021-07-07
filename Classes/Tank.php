@@ -1,5 +1,5 @@
 <?php 
-
+namespace autofight;
 use autofight\Abstracts\Unit as aUnit;
 use autofight\Interfaces\Unit as iUnit;
 

@@ -3,13 +3,16 @@
 namespace autofight;
 use autofight\Interfaces\Unit;
 
-class Army {
+class Army 
+{
 
   protected $iSize;
 
   protected $sLabel;
 
   protected $aUnits = array();
+
+  protected $aUnitTypes = array();
 
   // Default label
   protected static $aAdjectives = ['Iron', 'Fuchsia', 'Red', 'Brave', 'Lonely', 'Bitter', 'Deadly', 'Black', 'Armored'];
@@ -21,8 +24,38 @@ class Army {
     $this->buildArmy();
   }
 
+  // Add unit type 
+  public static function addUnitType(Unit $oUnit) {
+    self::$aUnitTypes[$oUnit->getType()] = $oUnit;
+  }
+
   // Build army
   protected function buildArmy() {
+    if (empty(self::$aUnitTypes)) {
+      die('No unit types have been registered in the Army.');
+    }
+    $iRarityTotal = 0;
+    $aRandomnessArray = array();
+
+    foreach (self::$aUnitTypes as $p => $oUnit) {
+      $iRarityTotal += $oUnit->getRarity();
+      $aRandomnessArray[$p] = $iRarityTotal;
+    }
+
+    for ($i=1; $i <= $this->getSize(); $i++) { 
+      $iRand = rand(1, $iRarityTotal);
+      foreach ($aRandomnessArray as $k => $iScore) {
+        if ($iRand > $iScore) {
+          continue;
+        } else if ($iRand <= $iScore) {
+          $oUnit = clone self::$aUnitTypes[$p];
+          $oUnit->setArmy($this);
+          break;
+        }
+      }
+      $iIndex = count($this->aUnits);
+      $this->aUnits[$iIndex] = $oUnit->setIndex($iIndex);
+    }
     return $this;
   }
 
@@ -99,6 +132,25 @@ class Army {
     }
     $i = rand(0, count($aAliveUnits) - 1);
     return (isset($aAliveUnits[$i])) ? $aAliveUnits[$i] : null;
+  }
+
+  // Get adjacent units
+  public function getAdjacentUnits(Unit $oUnit, $iRange = 1, $sSide = 'both') {
+    $aAdjacent = array();
+    while ($iRange > 0) {
+      if ($sSide == 'both' || $sSide == 'left') {
+        if (isset($this->aUnits[$oUnit->getIndex() - $iRange])) {
+          $aAdjacent[] = $this->aUnits[$oUnit->getIndex() - $iRange];
+        }
+      }
+      if ($sSide == 'both' || $sSide == 'right') {
+        if (isset($this->aUnits[$oUnit->getIndex() + $iRange])) {
+          $aAdjacent[] = $this->aUnits[$oUnit->getIndex() + $iRange];
+        }
+      }
+      $iRange--;
+    }
+    return array_reverse($aAdjacent);
   }
 
 }
