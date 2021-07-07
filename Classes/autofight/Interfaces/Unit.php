@@ -35,7 +35,7 @@ interface Unit {
   function getRarity();
 
   // Set army for unit
-  function setArmy();
+  function setArmy(Army $oArmy);
 
   // Return the unit's army
   function getArmy();
