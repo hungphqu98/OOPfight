@@ -111,8 +111,6 @@ abstract class Unit implements \autofight\Interfaces\Unit
     return ucfirst($this->getType()).' unit '.$this->getIndex().' ('.$this->getArmy()->getLabel().')';
   }
 
-
 }
-
 
 ?>

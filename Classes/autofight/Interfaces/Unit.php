@@ -32,7 +32,7 @@ interface Unit {
   function getDamage();
 
   // The chance of getting this unit in a random draw
-  function getRarity();
+  static function getRarity();
 
   // Set army for unit
   function setArmy(Army $oArmy);

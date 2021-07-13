@@ -12,7 +12,7 @@ class Army
 
   protected $aUnits = array();
 
-  protected $aUnitTypes = array();
+  protected static $aUnitTypes = array();
 
   // Default label
   protected static $aAdjectives = ['Iron', 'Fuchsia', 'Red', 'Brave', 'Lonely', 'Bitter', 'Deadly', 'Black', 'Armored'];
