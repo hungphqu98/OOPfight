@@ -44,7 +44,7 @@ class Army
 
     for ($i=1; $i <= $this->getSize(); $i++) { 
       $iRand = rand(1, $iRarityTotal);
-      foreach ($aRandomnessArray as $k => $iScore) {
+      foreach ($aRandomnessArray as $p => $iScore) {
         if ($iRand > $iScore) {
           continue;
         } else if ($iRand <= $iScore) {

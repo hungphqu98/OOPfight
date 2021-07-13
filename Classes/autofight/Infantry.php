@@ -100,7 +100,7 @@ class Infantry extends aUnit
 
   protected $sType = 'infantry';
 
-  protected $iDamage = 10;
+  protected $iDamage = 30;
   
   // Choose action 
   public function act(Army $oAttackedArmy) {
@@ -168,7 +168,7 @@ class Infantry extends aUnit
             if (!empty($aAdjacent)) {
                 $oUnitToShoot = $this->getRandomElement($aAdjacent);
                 if ($oUnitToShoot) {
-                    $aResults[] = $this. ' aims at' .$oUnit.' but bullet strays towards '.$oUnitToShoot.'!';
+                    $aResults[] = $this. ' aims at ' .$oUnit.' but bullet strays towards '.$oUnitToShoot.'!';
                     $aPostMerge = $this->shoot($oUnitToShoot);
                 }
             }

@@ -22,7 +22,7 @@
             break;
         default:
             $sMsg .= '<br />Maybe try this link:
-            <a href="/?army1=50&army2=50" >Army 1 = Army 2 = 50</a>';
+            <a href="?army1=50&army2=50" >Army 1 = Army 2 = 50</a>';
             break;
     }
     die ($sMsg);

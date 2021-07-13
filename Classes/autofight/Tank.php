@@ -66,7 +66,7 @@ class Tank extends aUnit
 
   protected $iRadius = 3;
 
-  protected $iDamage = 50;
+  protected $iDamage = 70;
 
   protected $sType = 'tank';
 
@@ -103,7 +103,7 @@ class Tank extends aUnit
             if (!empty($aAdjacent)) {
                 $oUnitToShoot = $this->getRandomElement($aAdjacent);
                 if ($oUnitToShoot) {
-                    $aResults[] = $this. ' aims at' .$oUnit.' but the projectile strays towards '.$oUnitToShoot.'!';
+                    $aResults[] = $this. ' aims at ' .$oUnit.' but the projectile strays towards '.$oUnitToShoot.'!';
                     $aPostMerge = $this->shoot($oUnitToShoot);
                 }
             }
